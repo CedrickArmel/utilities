@@ -1,8 +1,7 @@
-name: Reusable Build and Push images
+name: Build and Push images
 
 on:
   workflow_dispatch:
-on:
   push:
     branches:
       - 'main'
