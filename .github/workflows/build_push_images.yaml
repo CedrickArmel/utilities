@@ -7,6 +7,7 @@ on:
       - 'main'
     paths:
       - dockerfiles/Dockerfile.pyenv-poetry
+      - dockerfiles/Dockerfile.pyenv-poetry.gpu
     
 
 jobs:
@@ -29,13 +30,24 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
+        name: Build and push CPU image
         uses: docker/build-push-action@v5
         with:
           context: .
           platforms: linux/amd64,linux/arm64
           file: dockerfiles/Dockerfile.pyenv-poetry
           push: true
-          tags: drxc/python:latest
+          tags: drxc/python:focal-cpu
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_CACHE_TAG }}
           cache-to: type=registry,ref=${{ secrets.DOCKERHUB_CACHE_TAG }},mode=max
+      -
+        name: Build and push GPU image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          file: dockerfiles/Dockerfile.pyenv-poetry.gpu
+          push: true
+          tags: drxc/python:focal-gpu
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_CACHE_TAG }}-gpu
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_CACHE_TAG }}-gpu,mode=max
