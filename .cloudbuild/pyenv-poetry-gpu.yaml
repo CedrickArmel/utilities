@@ -1,0 +1,22 @@
+ steps: 
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        docker buildx create --name=container --driver=docker-container --use container
+        docker buildx build -f ../dockerfiles/Dockerfile.pyenv-poetry \
+        -t drxc/python:${PYTHONVERSION}-ubuntu${BASE_VERSION}-${DEVICE} \
+        --platform=linux/amd64,linux/arm64 \
+        --build-arg PYTHONVERSION=${PYTHONVERSION} \
+        --build-arg BASE_VERSION=${BASE_VERSION} \
+        --build-arg DEVICE=${DEVICE} \
+        --build-arg CUDA_VERSION=${CUDA_VERSION}
+        --cache-to "type=registry,drxc/python:${PYTHONVERSION}-ubuntu${BASE_VERSION}-${DEVICE}-cache" \
+        --cache-from "type=registry,drxc/python:${PYTHONVERSION}-ubuntu${BASE_VERSION}-${DEVICE}-cache" \
+        --push .
+    env:
+      - 'PYTHONVERSION=3.10.13'
+      - 'BASE_VERSION=20.04'
+      - 'CUDA_VERSION=12.5.0'
+      - 'DEVICE=cuda'
