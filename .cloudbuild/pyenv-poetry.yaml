@@ -4,9 +4,10 @@ steps:
     args:
       - '-c'
       - |
-        docker buildx create --name=container --driver=docker-container --use container
+        docker buildx create --name=container --driver=docker-container --use
         docker buildx build -f ../dockerfiles/Dockerfile.pyenv-poetry \
         -t drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE} \
+        --builder=container \
         --platform=linux/amd64,linux/arm64 \
         --build-arg PYTHONVERSION=${_PYTHONVERSION} \
         --build-arg BASE_VERSION=${_BASE_VERSION} \
