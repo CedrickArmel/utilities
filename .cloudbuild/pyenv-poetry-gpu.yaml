@@ -8,7 +8,7 @@ steps:
         docker buildx build -f ../dockerfiles/Dockerfile.pyenv-poetry \
         -t drxc/python:${PYTHONVERSION}-ubuntu${BASE_VERSION}-${DEVICE} \
         --platform=linux/amd64,linux/arm64 \
-        --build-arg PYTHONVERSION=${PYTHONVERSION} \
+        --build-arg PYTHONVERSION=${_PYTHONVERSION} \
         --build-arg BASE_VERSION=${BASE_VERSION} \
         --build-arg DEVICE=${DEVICE} \
         --build-arg CUDA_VERSION=${CUDA_VERSION}
