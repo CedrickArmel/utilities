@@ -15,5 +15,5 @@ steps:
         --build-arg CUDA_VERSION=${_CUDA_VERSION} \
         --cache-to "type=registry,ref=drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache,mode=max" \
         --cache-from "type=registry,ref=drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache" \
-        --push ../dockerfiles
+        --push dockerfiles
 logsBucket: ${_LOG_BUCKET}
