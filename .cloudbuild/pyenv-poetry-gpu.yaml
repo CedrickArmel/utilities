@@ -20,3 +20,5 @@
       - 'BASE_VERSION=20.04'
       - 'CUDA_VERSION=12.5.0'
       - 'DEVICE=cuda'
+    options:
+      logging: CLOUD_LOGGING_ONLY

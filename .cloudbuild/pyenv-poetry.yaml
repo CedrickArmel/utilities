@@ -18,3 +18,5 @@ steps:
       - 'PYTHONVERSION=3.10.13'
       - 'BASE_VERSION=20.04'
       - 'DEVICE=cpu'
+    options:
+      logging: CLOUD_LOGGING_ONLY
