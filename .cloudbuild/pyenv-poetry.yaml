@@ -1,4 +1,4 @@
-steps:
+steps: 
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
     args:
@@ -6,20 +6,13 @@ steps:
       - |
         docker buildx create --name=container --driver=docker-container --use container
         docker buildx build -f ../dockerfiles/Dockerfile.pyenv-poetry \
-        -t drxc/python:${PYTHONVERSION}-ubuntu${BASE_VERSION}-${DEVICE} \
+        -t drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE} \
         --platform=linux/amd64,linux/arm64 \
-        --build-arg PYTHONVERSION=${PYTHONVERSION} \
-        --build-arg BASE_VERSION=${BASE_VERSION} \
-        --build-arg DEVICE=${DEVICE} \
-        --cache-to "type=registry,drxc/python:${PYTHONVERSION}-ubuntu${BASE_VERSION}-${DEVICE}-cache" \
-        --cache-from "type=registry,drxc/python:${PYTHONVERSION}-ubuntu${BASE_VERSION}-${DEVICE}-cache" \
+        --build-arg PYTHONVERSION=${_PYTHONVERSION} \
+        --build-arg BASE_VERSION=${_BASE_VERSION} \
+        --build-arg DEVICE=${_DEVICE} \
+        --build-arg CUDA_VERSION=${_CUDA_VERSION} \
+        --cache-to "type=registry,drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache" \
+        --cache-from "type=registry,drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache" \
         --push .
-    env:
-      - 'PYTHONVERSION=3.10.13'
-      - 'BASE_VERSION=20.04'
-      - 'DEVICE=cpu'
-options:
-  logging: CLOUD_LOGGING_ONLY
-  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
 logsBucket: ${_LOG_BUCKET}
-
