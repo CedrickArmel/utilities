@@ -5,7 +5,7 @@ steps:
       - '-c'
       - |
         docker buildx create --name=container --driver=docker-container --use
-        docker buildx build -f Dockerfile.pyenv-poetry \
+        docker buildx build -f ./dockerfiles/Dockerfile.pyenv-poetry \
         -t drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE} \
         --builder=container \
         --platform=linux/amd64,linux/arm64 \
@@ -15,5 +15,5 @@ steps:
         --build-arg CUDA_VERSION=${_CUDA_VERSION} \
         --cache-to "type=registry,ref=drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache,mode=max" \
         --cache-from "type=registry,ref=drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache" \
-        --push dockerfiles
+        --push .
 logsBucket: ${_LOG_BUCKET}
