@@ -16,7 +16,7 @@ steps:
         --cache-from "type=registry,drxc/python:${PYTHONVERSION}-ubuntu${BASE_VERSION}-${DEVICE}-cache" \
         --push .
     env:
-      - 'PYTHONVERSION=3.10.13'
+      - 'PYTHONVERSION=${_PYTHONVERSION}'
       - 'BASE_VERSION=20.04'
       - 'CUDA_VERSION=12.5.0'
       - 'DEVICE=cuda'
