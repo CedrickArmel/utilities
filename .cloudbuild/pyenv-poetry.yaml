@@ -4,7 +4,7 @@ steps:
     args:
       - '-c'
       - |
-        docker login --username=$DOCKERHUB_USERNAME --password=$DOCKERHUB_TOKEN
+        docker login --username=$$DOCKERHUB_USERNAME --password=$$DOCKERHUB_TOKEN
         docker buildx create --name=container --driver=docker-container --use
         docker buildx build -f ./dockerfiles/Dockerfile.pyenv-poetry \
         -t drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE} \
