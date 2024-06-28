@@ -12,7 +12,7 @@ steps:
         --build-arg BASE_VERSION=${_BASE_VERSION} \
         --build-arg DEVICE=${_DEVICE} \
         --build-arg CUDA_VERSION=${_CUDA_VERSION} \
-        --cache-to "type=registry,drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache" \
-        --cache-from "type=registry,drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache" \
+        --cache-to "type=registry,ref=drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache,mode=max" \
+        --cache-from "type=registry,ref=drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache" \
         --push .
 logsBucket: ${_LOG_BUCKET}
