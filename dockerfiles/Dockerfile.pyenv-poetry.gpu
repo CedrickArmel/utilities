@@ -1,4 +1,5 @@
-FROM nvidia/cuda:12.5.0-devel-ubuntu20.04
+ARG  BASE_VERSION=focal
+FROM ubuntu:${BASE_VERSION}
 
 SHELL ["/bin/bash", "-c"]
 
