@@ -17,3 +17,5 @@ steps:
         --cache-from "type=registry,ref=drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache" \
         --push .
 logsBucket: ${_LOG_BUCKET}
+options:
+  machineType: 'E2_HIGHCPU_8'
