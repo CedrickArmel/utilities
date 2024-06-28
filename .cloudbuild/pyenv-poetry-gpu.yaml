@@ -1,4 +1,4 @@
- steps: 
+steps: 
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
     args:
@@ -20,7 +20,4 @@
       - 'BASE_VERSION=20.04'
       - 'CUDA_VERSION=12.5.0'
       - 'DEVICE=cuda'
-options:
-  logging: CLOUD_LOGGING_ONLY
-  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
 logsBucket: ${_LOG_BUCKET}
