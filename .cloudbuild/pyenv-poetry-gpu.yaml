@@ -6,18 +6,13 @@ steps:
       - |
         docker buildx create --name=container --driver=docker-container --use container
         docker buildx build -f ../dockerfiles/Dockerfile.pyenv-poetry \
-        -t drxc/python:${PYTHONVERSION}-ubuntu${BASE_VERSION}-${DEVICE} \
+        -t drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE} \
         --platform=linux/amd64,linux/arm64 \
         --build-arg PYTHONVERSION=${_PYTHONVERSION} \
-        --build-arg BASE_VERSION=${BASE_VERSION} \
-        --build-arg DEVICE=${DEVICE} \
-        --build-arg CUDA_VERSION=${CUDA_VERSION}
-        --cache-to "type=registry,drxc/python:${PYTHONVERSION}-ubuntu${BASE_VERSION}-${DEVICE}-cache" \
-        --cache-from "type=registry,drxc/python:${PYTHONVERSION}-ubuntu${BASE_VERSION}-${DEVICE}-cache" \
+        --build-arg BASE_VERSION=${_BASE_VERSION} \
+        --build-arg DEVICE=${_DEVICE} \
+        --build-arg CUDA_VERSION=${_CUDA_VERSION}
+        --cache-to "type=registry,drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache" \
+        --cache-from "type=registry,drxc/python:${_PYTHONVERSION}-ubuntu${_BASE_VERSION}-${_DEVICE}-cache" \
         --push .
-    env:
-      - 'PYTHONVERSION=${_PYTHONVERSION}'
-      - 'BASE_VERSION=20.04'
-      - 'CUDA_VERSION=12.5.0'
-      - 'DEVICE=cuda'
 logsBucket: ${_LOG_BUCKET}
