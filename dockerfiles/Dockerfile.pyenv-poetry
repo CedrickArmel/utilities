@@ -3,7 +3,7 @@ ARG CUDA_VERSION=12.5.0
 ARG DEVICE=cpu
 
 FROM ubuntu:${BASE_VERSION} AS base-cpu
-FROM nvidia/cuda:${CUDA_VERSION}-devel-ubuntu${BASE_VERSION} AS base-cuda
+FROM nvidia/cuda:${CUDA_VERSION}-devel-ubuntu${BASE_VERSION} AS base-gpu
 FROM base-${DEVICE}
 
 SHELL ["/bin/bash", "-c"]
