@@ -33,6 +33,7 @@ RUN set -eux ;\
         git \
         libbz2-dev \
         libffi-dev \
+	libhdf5-dev \
         liblzma-dev \
         libncursesw5-dev \
         libreadline-dev \
@@ -42,6 +43,7 @@ RUN set -eux ;\
         libxmlsec1-dev \
         llvm \
         make \
+	pkg-config \
         tk-dev \
         wget \
         xz-utils \
