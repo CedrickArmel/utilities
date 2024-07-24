@@ -28,7 +28,6 @@ RUN set -eux ;\
     \
     apt-get update \
     && apt-get install -y --no-install-recommends --fix-missing \
-	build-dep \
         build-essential \
         curl \
         git \
